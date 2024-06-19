@@ -77,7 +77,7 @@ static uint8_t tabla[] = {
 	0x00, 0x41, 0x22, 0x14, 0x08, 0x00, // >
 	0x02, 0x01, 0x51, 0x09, 0x06, 0x00, // ?
 	0x32, 0x49, 0x79, 0x41, 0x3E, 0x00, // @
-	0x7F, 0x09, 0x09, 0x09, 0x7F, 0x00, // A
+	0x7E, 0x09, 0x09, 0x09, 0x7E, 0x00, // A
 	0x7F, 0x49, 0x49, 0x49, 0x36, 0x00, // B
 	0x3E, 0x41, 0x41, 0x41, 0x22, 0x00, // C
 	0x7F, 0x41, 0x41, 0x22, 0x1C, 0x00, // D
@@ -209,14 +209,14 @@ void barrido_matriz(uint8_t *display)
 	if ((total_ms - tiempo) > 2)
 	{
 		tiempo = total_ms;
-		GPIO_WritePin(G_L, HIGH);
+		GPIO_WritePin(O_L, HIGH);
 		estado_barrido = (estado_barrrido_e)((uint8_t)estado_barrido + 1);
 		estado_barrido = (estado_barrrido_e)((uint8_t)estado_barrido % MAX_ROWS);
 		send_row(display, (uint8_t)estado_barrido);
 		GPIO_WritePin(RCK, HIGH);
 		_delay_us(1);
 		GPIO_WritePin(RCK, LOW);
-		GPIO_WritePin(G_L, LOW);
+		GPIO_WritePin(O_L, LOW);
 	}
 }
 
@@ -232,7 +232,7 @@ void barrido_matriz(uint8_t *display)
 */
 void desplazar_izq(uint8_t *display, size_t cols)
 {
-	if ((total_ms - tiempo2) > 500)
+	if ((total_ms - tiempo2) > 100)
 	{
 		tiempo2 = total_ms;
 		uint8_t aux = display[0];
@@ -256,7 +256,7 @@ void inicializar_matriz(void)
 	GPIO_InitPin(RCK, GPIO_OUTPUT);
 	GPIO_InitPin(SCK, GPIO_OUTPUT);
 	GPIO_InitPin(SI, GPIO_OUTPUT);
-	GPIO_InitPin(G_L, GPIO_OUTPUT);
+	GPIO_InitPin(O_L, GPIO_OUTPUT);
 
 	// delayInit(delay_barrido, 2);
 	// delayInit(delay_desplazamiento, 100);

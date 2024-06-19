@@ -8,8 +8,8 @@
         {
             "name": "PlatformIO",
             "includePath": [
-                "/home/nico/Escritorio/matriz_leds/prog/include",
-                "/home/nico/Escritorio/matriz_leds/prog/src",
+                "/home/nico/Escritorio/dot_matrix/code/include",
+                "/home/nico/Escritorio/dot_matrix/code/src",
                 "/home/nico/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/nico/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
                 "/home/nico/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
@@ -23,8 +23,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
-                    "/home/nico/Escritorio/matriz_leds/prog/include",
-                    "/home/nico/Escritorio/matriz_leds/prog/src",
+                    "/home/nico/Escritorio/dot_matrix/code/include",
+                    "/home/nico/Escritorio/dot_matrix/code/src",
                     "/home/nico/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/nico/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
                     "/home/nico/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",

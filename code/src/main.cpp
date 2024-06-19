@@ -42,8 +42,8 @@
 /*********************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  *********************************************************************************************************/
-#define MAX_DISPLAY 100
-#define BUFFER_SIZE 15
+#define MAX_DISPLAY 120
+#define BUFFER_SIZE 20
 /*********************************************************************************************************
  *** MACROS PRIVADAS AL MODULO
  *********************************************************************************************************/
@@ -115,6 +115,7 @@ ISR(TIMER0_COMPA_vect)
 int main(void)
 {
   uint8_t index = 0;
+  uint8_t num_of_chars = 0;
   Serial.begin(9600);
   Timer0_init();
   inicializar_matriz();
@@ -130,16 +131,13 @@ int main(void)
     {
       // Leer un byte del puerto serie
       char receivedChar = Serial.read();
+      Serial.print(receivedChar);
+      num_of_chars++;
       // Si el carácter es de nueva línea (indicando fin de cadena)
-      if (receivedChar == '\n')
+      if (receivedChar == '\r' || num_of_chars == BUFFER_SIZE - 1)
       {
         // Agregar un carácter nulo al final para finalizar la cadena
-        buffer[index] = '\0';
-
-        // Imprimir la cadena recibida
-        Serial.print("Received: ");
-        // Reiniciar el índice para la próxima cadena
-        index = 0;
+        buffer[index++] = '\0';
         enviar_mensaje(display, sizeof(display) / sizeof(display[0]), (const uint8_t *)buffer);
       }
       else
@@ -150,6 +148,16 @@ int main(void)
           buffer[index++] = receivedChar;
         }
       }
+      if (receivedChar == '\n')
+      {
+        buffer[index] = '\0';
+        // Imprimir la cadena recibida
+        Serial.print("Received: ");
+        // Reiniciar el índice para la próxima cadena
+        index = 0;
+        num_of_chars = 0;
+      }
+      
     }
 
     barrido_matriz(display);
