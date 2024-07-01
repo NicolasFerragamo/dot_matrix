@@ -1,20 +1,20 @@
 /*********************************************************************************************************
- *                                               <Module name>
- *						<Module description>
+ * <Module name>
+ * <Module description>
  *
- *						<Copyright>
+ * <Copyright>
  *
- *						<Copyright or distribution terms>
+ * <Copyright or distribution terms>
  *
  *
  *********************************************************************************************************/
 
 /*********************************************************************************************************
- *                                               <File description>
+ * <File description>
  *
- * Filename	: Filename
- * Version	: Module version
- * Programmer(s) : Programmer initial(s)
+ * Filename       : Filename
+ * Version        : Module version
+ * Programmer(s)  : Programmer initial(s)
  **********************************************************************************************************
  *  Note(s):
  *
@@ -24,10 +24,10 @@
 
 /*********************************************************************************************************
  *
- * \file		${file_name}
- * \brief		Descripción del modulo
- * \date		${date}
- * \author		Nicolas Ferragamo nferragamo@est.frba.utn.edu.ar
+ * \file        ${file_name}
+ * \brief       Descripción del modulo
+ * \date        ${date}
+ * \author      Nicolas Ferragamo nferragamo@est.frba.utn.edu.ar
  * \version
  *********************************************************************************************************/
 
@@ -62,7 +62,7 @@
  *   módulo seguida de un _
  *   ej: MEM_POOL  Mem_PoolHeap;
  *********************************************************************************************************/
-volatile uint64_t total_ms = 0, tiempo = 0, tiempo2 = 0;
+volatile uint64_t totalMillis = 0;
 uint8_t buffer[BUFFER_SIZE];
 
 uint8_t display[MAX_DISPLAY]; //!< cada bit representa una fila, cada byte una columna /*
@@ -76,7 +76,6 @@ uint8_t display[MAX_DISPLAY]; //!< cada bit representa una fila, cada byte una c
 
     hay que pensar cada caracter de forma vertical, como si la memoria fuera una sucesión de columnas
 */
-
 
 
 /*********************************************************************************************************
@@ -100,15 +99,15 @@ void Timer0_init(void);
  *********************************************************************************************************/
 void Timer0_init(void)
 {
-  TCCR0A = (1 << WGM01);              // Activa el bit CTC (clear timer on compare match) del TCCR0A (timer counter/control register)
-  OCR0A = 249;                        // Valor de comparación para interrumpir cada 1 ms (16 MHz / 64 / 1000 - 1)
-  TCCR0B = (1 << CS01) | (1 << CS00); // Preescaler de 64
-  TIMSK0 = (1 << OCIE0A);             // Habilita las interrupciones en timer compare
+    TCCR0A = (1 << WGM01);              // Activa el bit CTC (clear timer on compare match) del TCCR0A (timer counter/control register)
+    OCR0A = 249;                        // Valor de comparación para interrumpir cada 1 ms (16 MHz / 64 / 1000 - 1)
+    TCCR0B = (1 << CS01) | (1 << CS00); // Preescaler de 64
+    TIMSK0 = (1 << OCIE0A);             // Habilita las interrupciones en timer compare
 }
 
 ISR(TIMER0_COMPA_vect)
 {
-  total_ms++;
+    totalMillis++;
 }
 
 /*********************************************************************************************************
@@ -116,63 +115,59 @@ ISR(TIMER0_COMPA_vect)
  *********************************************************************************************************/
 
 /**
-  \fn  		  main
-  \brief 		Eemplo de uso de la librería dot_matrix
-  \author 	Nombre
-  \date 		${date}
-  \return tipo 	y descripción de retorno
+  \fn           main
+  \brief        Eemplo de uso de la librería dot_matrix
+  \author       Nombre
+  \date         ${date}
+  \return       tipo y descripción de retorno
 */
 
 int main(void)
 {
-  uint8_t index = 0;
-  uint8_t num_of_chars = 0;
-  Serial.begin(9600);
-  Timer0_init();
-  inicializar_matriz();
-  sei();
-  tiempo = total_ms;
-  tiempo2 = total_ms;
-  enviar_mensaje(display, sizeof(display) / sizeof(display[0]), (const uint8_t *)"hola mundo");
-  Serial.println("Ingrese el mensaje a mostrar: \n");
-  while (true)
-  {
-
-    if (Serial.available() > 0)
+    uint8_t index = 0;
+    uint8_t num_of_chars = 0;
+    Serial.begin(9600);
+    Timer0_init();
+    inicializar_matriz();
+    sei();
+    enviar_mensaje(display, sizeof(display) / sizeof(display[0]), (const uint8_t *)"hola mundo");
+    Serial.println("Ingrese el mensaje a mostrar: \n");
+    while (true)
     {
-      // Leer un byte del puerto serie
-      char receivedChar = Serial.read();
-      Serial.print(receivedChar);
-      num_of_chars++;
-      // Si el carácter es de nueva línea (indicando fin de cadena)
-      if (receivedChar == '\r' || num_of_chars == BUFFER_SIZE - 1)
-      {
-        // Agregar un carácter nulo al final para finalizar la cadena
-        buffer[index++] = '\0';
-        enviar_mensaje(display, sizeof(display) / sizeof(display[0]), (const uint8_t *)buffer);
-      }
-      else
-      {
-        // Si el índice es menor que el tamaño del buffer, añadir el carácter
-        if (index < BUFFER_SIZE - 1)
+        if (Serial.available() > 0)
         {
-          buffer[index++] = receivedChar;
+            // Leer un byte del puerto serie
+            char receivedChar = Serial.read();
+            Serial.print(receivedChar);
+            num_of_chars++;
+            // Si el carácter es de nueva línea (indicando fin de cadena)
+            if (receivedChar == '\r' || num_of_chars == BUFFER_SIZE - 1)
+            {
+                // Agregar un carácter nulo al final para finalizar la cadena
+                buffer[index++] = '\0';
+                enviar_mensaje(display, sizeof(display) / sizeof(display[0]), (const uint8_t *)buffer);
+            }
+            else
+            {
+                // Si el índice es menor que el tamaño del buffer, añadir el carácter
+                if (index < BUFFER_SIZE - 1)
+                {
+                    buffer[index++] = receivedChar;
+                }
+            }
+            if (receivedChar == '\n')
+            {
+                buffer[index] = '\0';
+                // Imprimir la cadena recibida
+                Serial.print("Received: ");
+                // Reiniciar el índice para la próxima cadena
+                index = 0;
+                num_of_chars = 0;
+            }
         }
-      }
-      if (receivedChar == '\n')
-      {
-        buffer[index] = '\0';
-        // Imprimir la cadena recibida
-        Serial.print("Received: ");
-        // Reiniciar el índice para la próxima cadena
-        index = 0;
-        num_of_chars = 0;
-      }
-      
-    }
 
-    barrido_matriz(display);
-    desplazar_izq(display, sizeof(display) / sizeof(display[0]));
-  }
-  return 1;
+        barrido_matriz(display);
+        desplazar_izq(display, sizeof(display) / sizeof(display[0]));
+    }
+    return 1;
 }
