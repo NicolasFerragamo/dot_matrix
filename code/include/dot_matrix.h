@@ -1,10 +1,10 @@
 /*********************************************************************************************************
  *
- * \file		${file_name}
- * \brief		Librería para el manejo de matriz de puntos
- * \date		${date}
- * \author		Nicolás Ferragamo
- * \version     1.0
+ * \file    ${file_name}
+ * \brief   Librería para el manejo de matriz de puntos
+ * \date    ${date}
+ * \author  Nicolás Ferragamo
+ * \version 1.0
 *********************************************************************************************************/
 
 /*********************************************************************************************************
@@ -29,10 +29,10 @@ extern "C" {
 /*********************************************************************************************************
  *** DEFINES GLOBALES
 *********************************************************************************************************/
-#define  RCK GPIO_PORTB,GPIO_PIN0  //!<   /*
-#define  SCK GPIO_PORTB,GPIO_PIN1  //!<   /*
-#define  SI  GPIO_PORTB,GPIO_PIN2  //!<   /*
-#define  O_L GPIO_PORTB,GPIO_PIN3  //!< Es activo bajo  /*
+#define  RCK GPIO_PORTB,GPIO_PIN0  //!< Latch Clock o STC/*
+#define  SCK GPIO_PORTB,GPIO_PIN1  //!< Serial Clock o SHC/*
+#define  SI  GPIO_PORTB,GPIO_PIN2  //!< Serial Input o DS/*
+#define  O_L GPIO_PORTB,GPIO_PIN3  //!< Output Enable, es activo bajo/*
 
 #define MAX_ROWS 7
 #define MAX_COLS 40
@@ -48,10 +48,10 @@ extern "C" {
  *** TIPO DE DATOS GLOBALES
 *********************************************************************************************************/
 /**
- * @enum  estado_barrrido_e
- * @brief Indica la fila a barrer.
- * @date ${date}
- * @author Nicolas Ferragamo nferragamo@frba.utn.edu.ar
+ * @enum    estado_barrrido_e
+ * @brief   Indica la fila a barrer.
+ * @date    ${date}
+ * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 typedef enum
 { FILA1 = 0,

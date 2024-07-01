@@ -1,10 +1,10 @@
 /*********************************************************************************************************
  *
- * \file		${file_name}
- * \brief		Librería para el manejo de pines GPIO
- * \date		${date}
- * \author		Nicolás Ferragamo
- * \version     1.0
+ * \file    ${file_name}
+ * \brief   Librería para el manejo de pines GPIO
+ * \date    ${date}
+ * \author  Nicolás Ferragamo
+ * \version 1.0
 *********************************************************************************************************/
 
 /*********************************************************************************************************
@@ -37,10 +37,10 @@ extern "C" {
  *** TIPO DE DATOS GLOBALES
 *********************************************************************************************************/
 /**
- * @enum  gpio_port_e
- * @brief Indica el Puerto.
- * @date ${date}
- * @author Nicolas Ferragamo nferragamo@frba.utn.edu.ar
+ * @enum    gpio_port_e
+ * @brief   Indica el Puerto.
+ * @date    ${date}
+ * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 typedef enum
 {
@@ -50,10 +50,10 @@ typedef enum
 } gpio_port_e;
 
 /**
- * @enum  gpio_pin_e
- * @brief Indica el pin.
- * @date ${date}
- * @author Nicolas Ferragamo nferragamo@frba.utn.edu.ar
+ * @enum    gpio_pin_e
+ * @brief   Indica el pin.
+ * @date    ${date}
+ * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 typedef enum
 {
@@ -69,10 +69,10 @@ typedef enum
 
 
 /**
- * @enum  gpio_mode_e
- * @brief Indica el Puerto.
- * @date ${date}
- * @author Nicolas Ferragamo nferragamo@frba.utn.edu.ar
+ * @enum    gpio_mode_e
+ * @brief   Indica el modo del GPIO.
+ * @date    ${date}
+ * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 typedef enum
 {
