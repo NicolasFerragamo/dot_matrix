@@ -13,12 +13,12 @@ bool delayRead(delay_t *delay)
 
     if (delay->running == false)
     {
-        delay->startTime = total_ms;
+        delay->startTime = totalMillis;
         delay->running = true;
     }
     else
     {
-        if (total_ms - delay->startTime >= delay->duration)
+        if (totalMillis - delay->startTime >= delay->duration)
         {
             delay->running = false;
             delay->startTime = 0;
