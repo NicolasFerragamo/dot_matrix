@@ -209,14 +209,14 @@ void barrido_matriz(uint8_t *display)
 	if ((total_ms - tiempo) > 2)
 	{
 		tiempo = total_ms;
-		GPIO_WritePin(O_L, HIGH);
+		GPIO_WritePin(OE_L, HIGH);
 		estado_barrido = (estado_barrrido_e)((uint8_t)estado_barrido + 1);
 		estado_barrido = (estado_barrrido_e)((uint8_t)estado_barrido % MAX_ROWS);
 		send_row(display, (uint8_t)estado_barrido);
 		GPIO_WritePin(RCK, HIGH);
 		_delay_us(1);
 		GPIO_WritePin(RCK, LOW);
-		GPIO_WritePin(O_L, LOW);
+		GPIO_WritePin(OE_L, LOW);
 	}
 }
 
@@ -256,7 +256,7 @@ void inicializar_matriz(void)
 	GPIO_InitPin(RCK, GPIO_OUTPUT);
 	GPIO_InitPin(SCK, GPIO_OUTPUT);
 	GPIO_InitPin(SI, GPIO_OUTPUT);
-	GPIO_InitPin(O_L, GPIO_OUTPUT);
+	GPIO_InitPin(OE_L, GPIO_OUTPUT);
 
 	// delayInit(delay_barrido, 2);
 	// delayInit(delay_desplazamiento, 100);

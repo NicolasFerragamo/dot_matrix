@@ -42,8 +42,8 @@
 /*********************************************************************************************************
  *** DEFINES PRIVADOS AL MODULO
  *********************************************************************************************************/
-#define MAX_DISPLAY 120
-#define BUFFER_SIZE 20
+#define MAX_DISPLAY 192
+#define BUFFER_SIZE 32
 /*********************************************************************************************************
  *** MACROS PRIVADAS AL MODULO
  *********************************************************************************************************/
@@ -66,6 +66,17 @@ volatile uint64_t total_ms = 0, tiempo = 0, tiempo2 = 0;
 uint8_t buffer[BUFFER_SIZE];
 
 uint8_t display[MAX_DISPLAY]; //!< cada bit representa una fila, cada byte una columna /*
+/*  columna 1 :  | x | F7 | F6 | F5 | F4 | F3 | F2 | F1 | F0 | 
+    columna 2 :  | x | F7 | F6 | F5 | F4 | F3 | F2 | F1 | F0 | 
+    .
+    .
+    .
+    columna n-1: | x | F7 | F6 | F5 | F4 | F3 | F2 | F1 | F0 |
+    columna n:   | x | F7 | F6 | F5 | F4 | F3 | F2 | F1 | F0 |
+
+    hay que pensar cada caracter de forma vertical, como si la memoria fuera una sucesión de columnas
+*/
+
 
 
 /*********************************************************************************************************

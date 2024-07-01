@@ -29,10 +29,10 @@ extern "C" {
 /*********************************************************************************************************
  *** DEFINES GLOBALES
 *********************************************************************************************************/
-#define  RCK GPIO_PORTB,GPIO_PIN0  //!<   /*
-#define  SCK GPIO_PORTB,GPIO_PIN1  //!<   /*
-#define  SI  GPIO_PORTB,GPIO_PIN2  //!<   /*
-#define  O_L GPIO_PORTB,GPIO_PIN3  //!< Es activo bajo  /*
+#define  RCK  GPIO_PORTB,GPIO_PIN0  //!<   /*
+#define  SCK  GPIO_PORTB,GPIO_PIN1  //!<   /*
+#define  SI   GPIO_PORTB,GPIO_PIN2  //!<   /*
+#define  OE_L GPIO_PORTB,GPIO_PIN3  //!< Es activo bajo  /*
 
 #define MAX_ROWS 7
 #define MAX_COLS 40
