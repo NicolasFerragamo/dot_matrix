@@ -55,13 +55,14 @@ extern "C" {
  * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 typedef enum
-{ FILA1 = 0,
-  FILA2,
-  FILA3,
-  FILA4,
-  FILA5,
-  FILA6,
-  FILA7
+{ 
+    FILA1 = 0,
+    FILA2,
+    FILA3,
+    FILA4,
+    FILA5,
+    FILA6,
+    FILA7
 } estado_barrrido_e;
 
 

@@ -1,5 +1,11 @@
 #include "API_delay.h"
 
+/**
+ * @brief   Initialize delay struct
+ *          Set delay duration
+ * @param delay 
+ * @param duration 
+ */
 void delayInit(delay_t *delay, uint64_t duration)
 {
     delay->duration = duration;
