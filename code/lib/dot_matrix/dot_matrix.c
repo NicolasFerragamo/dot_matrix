@@ -42,7 +42,7 @@
  * @author  Nicolas Ferragamo nferragamo@frba.utn.edu.ar
  */
 
-static uint8_t tabla[] = {
+const uint8_t tabla[] PROGMEM = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // espacio
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // espacio
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // espacio
@@ -294,7 +294,7 @@ void inicializar_matriz(void)
 
 /**
     \fn         void enviar_mensaje(uint8_t* display, const char* mensaje)
-    \brief      Función encargada escribir el mensae deseado en el array a enviar
+    \brief      Función encargada escribir el mensaje deseado en el array a enviar
     \date       ${date}
     \author     Nicolás Ferragamo
     \return     void
@@ -309,7 +309,9 @@ void enviar_mensaje(uint8_t *display, size_t max_disp, const uint8_t *mensaje)
         indice = mensaje[j];  // los primeros 32 caracteres no imprimibles, quedan disponibles para caracteres propios
         for (uint8_t k = 0; k < 6; k++)
         {
-            display[i] = tabla[indice * 6 + k];
+
+            display[i] = pgm_read_byte(&(tabla[ indice * 6 + k ]));
+            //display[i] = tabla[indice * 6 + k];
             i++;
         }
     }

@@ -115,11 +115,11 @@ ISR(TIMER0_COMPA_vect)
  *********************************************************************************************************/
 
 /**
-  \fn           main
-  \brief        Eemplo de uso de la librería dot_matrix
-  \author       Nombre
-  \date         ${date}
-  \return       tipo y descripción de retorno
+    \fn           main
+    \brief        Eemplo de uso de la librería dot_matrix
+    \author       Nombre
+    \date         ${date}
+    \return       tipo y descripción de retorno
 */
 
 int main(void)

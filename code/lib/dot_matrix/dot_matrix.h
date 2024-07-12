@@ -25,6 +25,8 @@ extern "C" {
 #include <stdbool.h>
 #include "gpio.h"
 #include <stdlib.h>
+#include <avr/pgmspace.h>
+
 
 /*********************************************************************************************************
  *** DEFINES GLOBALES
