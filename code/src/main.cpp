@@ -122,8 +122,37 @@ ISR(TIMER0_COMPA_vect)
   \return       tipo y descripción de retorno
 */
 
+
+struct datos{
+    
+    uint8_t valor1;
+    uint16_t valor2;
+    char* ptr;
+    char str[16];
+};
+
+
+
+
+
 int main(void)
 {
+
+    struct datos aux;
+
+    
+
+    aux.valor1=0;
+    aux.valor2=1;
+    aux.ptr= (char*) &aux.valor1;
+    
+   
+    struct datos* struct_ptr= &aux;
+
+
+    *struct_ptr->ptr=5;
+   
+   
     uint8_t index = 0;
     uint8_t num_of_chars = 0;
     Serial.begin(9600);
